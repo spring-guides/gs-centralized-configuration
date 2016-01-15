@@ -1,4 +1,4 @@
-rootProject.name = 'gs-service-registration-and-discovery'
+rootProject.name = 'gs-centralized-configuration'
 
-include 'eureka-client'
-include 'eureka-service'
+include 'configuration-client'
+include 'configuration-service'
