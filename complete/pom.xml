@@ -4,13 +4,13 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>org.springframework</groupId>
-    <artifactId>gs-service-registration-and-discovery</artifactId>
+    <artifactId>gs-centralized-configuration</artifactId>
     <version>0.1.0</version>
     <packaging>pom</packaging>
 
     <modules>
-        <module>eureka-client</module>
-        <module>eureka-service</module>
+        <module>configuration-client</module>
+        <module>configuration-service</module>
     </modules>
 
 </project>
