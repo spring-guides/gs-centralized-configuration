@@ -62,16 +62,16 @@ include::https://raw.githubusercontent.com/spring-guides/getting-started-macros/
 
 include::https://raw.githubusercontent.com/spring-guides/getting-started-macros/master/create_directory_structure_hello.adoc[]
 
-`eureka-service/pom.xml`
+`configuration-service/pom.xml`
 [source,xml]
 ----
-include::https://raw.githubusercontent.com/spring-guides/{project_id}/master/initial/eureka-service/pom.xml[]
+include::https://raw.githubusercontent.com/spring-guides/{project_id}/master/initial/configuration-service/pom.xml[]
 ----
 
-`eureka-client/pom.xml`
+`configuration-client/pom.xml`
 [source,xml]
 ----
-include::https://raw.githubusercontent.com/spring-guides/{project_id}/master/initial/eureka-client/pom.xml[]
+include::https://raw.githubusercontent.com/spring-guides/{project_id}/master/initial/configuration-client/pom.xml[]
 ----
 
 include::https://raw.githubusercontent.com/spring-guides/getting-started-macros/master/spring-boot-maven-plugin.adoc[]
