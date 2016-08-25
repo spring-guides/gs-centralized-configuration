@@ -19,7 +19,7 @@ public class ConfigClientApplication {
 @RestController
 class MessageRestController {
 
-    @Value("${message}")
+    @Value("${message:Hello default}")
     private String message;
 
     @RequestMapping("/message")
