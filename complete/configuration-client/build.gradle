@@ -23,11 +23,13 @@ dependencies {
     compile('org.springframework.cloud:spring-cloud-starter-config')
     compile('org.springframework.boot:spring-boot-starter-actuator')
     compile('org.springframework.boot:spring-boot-starter-web')
-    testCompile('org.springframework.boot:spring-boot-starter-web')
+    testCompile('org.springframework.boot:spring-boot-starter-test')
 }
 
 dependencyManagement {
-    imports { mavenBom "org.springframework.cloud:spring-cloud-starter-parent:Brixton.SR5" }
+    imports {
+        mavenBom "org.springframework.cloud:spring-cloud-dependencies:Brixton.SR5"
+    }
 }
 
 
