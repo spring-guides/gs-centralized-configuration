@@ -44,8 +44,8 @@
 		<dependencies>
 			<dependency>
 				<groupId>org.springframework.cloud</groupId>
-				<artifactId>spring-cloud-starter-parent</artifactId>
-				<version>Angel.SR4</version>
+				<artifactId>spring-cloud-dependencies</artifactId>
+				<version>Camden.SR4</version>
 				<type>pom</type>
 				<scope>import</scope>
 			</dependency>
