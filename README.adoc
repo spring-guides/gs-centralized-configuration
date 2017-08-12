@@ -140,4 +140,11 @@ NOTE: we set `management.security.enabled=false` in the client app to make this 
 == Summary
 Congratulations! You've just used Spring to centralize configuration for all your services by first standing up a  and to then dynamically update configuration.
 
+== See Also
+
+The following guides may also be helpful:
+
+* https://spring.io/guides/gs/spring-boot/[Building an Application with Spring Boot]
+* https://spring.io/guides/gs/multi-module/[Creating a Multi Module Project]
+
 include::https://raw.githubusercontent.com/spring-guides/getting-started-macros/master/footer.adoc[]
