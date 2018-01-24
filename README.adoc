@@ -103,6 +103,18 @@ Specify the path to the Git repository by specifying the `spring.cloud.config.se
 include::complete/configuration-service/src/main/resources/application.properties[]
 ----
 
+In this example we are using a file-based git repository at `${HOME}/Desktop/config`. You can create one easily by making a new directory and git committing properties and YAML files to it. E.g.
+
+----
+$ cd ~/Desktop/config
+$ find .
+./.git
+...
+./application.yml
+----
+
+Or you could use a remote git repository, e.g. on github, if you change the configuration file in the application to point to that instead.
+
 
 == Reading Configuration from the Config Server using the Config Client
 
