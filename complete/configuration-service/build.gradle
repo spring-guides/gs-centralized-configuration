@@ -1,5 +1,5 @@
 buildscript {
-    ext { springBootVersion = '1.5.10.RELEASE' }
+    ext { springBootVersion = '2.0.0.RELEASE' }
     repositories { mavenCentral() }
     dependencies { classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}") }
 }
@@ -8,6 +8,7 @@ apply plugin: 'java'
 apply plugin: 'eclipse'
 apply plugin: 'idea'
 apply plugin: 'org.springframework.boot'
+apply plugin: 'io.spring.dependency-management'
 
 bootJar {
     baseName = 'configuration-service'
@@ -25,10 +26,15 @@ dependencies {
 
 dependencyManagement {
     imports {
-        mavenBom "org.springframework.cloud:spring-cloud-dependencies:Edgware.SR2"
+        mavenBom "org.springframework.cloud:spring-cloud-dependencies:Finchley.M8"
     }
 }
 
+repositories {
+    maven {
+        url 'https://repo.spring.io/libs-milestone'
+    }
+}
 
 eclipse {
     classpath {
