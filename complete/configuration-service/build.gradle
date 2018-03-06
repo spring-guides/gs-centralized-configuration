@@ -9,7 +9,7 @@ apply plugin: 'eclipse'
 apply plugin: 'idea'
 apply plugin: 'org.springframework.boot'
 
-jar {
+bootJar {
     baseName = 'configuration-service'
     version = '0.0.1-SNAPSHOT'
 }
