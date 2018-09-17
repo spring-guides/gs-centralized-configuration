@@ -1,11 +1,7 @@
 buildscript {
-    ext { springBootVersion = '2.0.3.RELEASE' }
+    ext { springBootVersion = '2.0.5.RELEASE' }
     repositories { mavenCentral() }
     dependencies { classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}") }
-}
-
-plugins {
-    id "io.spring.dependency-management" version "1.0.5.RELEASE"
 }
 
 apply plugin: 'java'
@@ -30,7 +26,7 @@ dependencies {
 
 dependencyManagement {
     imports {
-        mavenBom "org.springframework.cloud:spring-cloud-dependencies:Finchley.BUILD-SNAPSHOT"
+        mavenBom "org.springframework.cloud:spring-cloud-dependencies:Finchley.SR1"
     }
 }
 
