@@ -32,15 +32,6 @@ dependencyManagement {
     }
 }
 
-repositories {
-    maven {
-        url 'https://repo.spring.io/libs-milestone'
-    }
-    maven {
-        url 'https://repo.spring.io/libs-snapshot'
-    }
-}
-
 eclipse {
     classpath {
         containers.remove('org.eclipse.jdt.launching.JRE_CONTAINER')
