@@ -3,11 +3,11 @@
 :source-highlighter: prettify
 :project_id: gs-centralized-configuration
 
-This guide walks you through the process of standing up, and consuming configuration from, the http://cloud.spring.io/spring-cloud-config/spring-cloud-config.html[Spring Cloud Config Server]
+This guide walks you through the process of standing up, and consuming configuration from, the https://cloud.spring.io/spring-cloud-config/spring-cloud-config.html[Spring Cloud Config Server]
 
 == What you'll build
 
-You'll setup a http://cloud.spring.io/spring-cloud-config/spring-cloud-config.html[Config Server] and then build a client that consumes the configuration on startup and then _refreshes_ the configuration without restarting the client.
+You'll setup a https://cloud.spring.io/spring-cloud-config/spring-cloud-config.html[Config Server] and then build a client that consumes the configuration on startup and then _refreshes_ the configuration without restarting the client.
 
 == What you'll need
 
