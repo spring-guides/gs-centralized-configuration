@@ -29,7 +29,7 @@ This guide needs two applications. The first application (the configuration serv
 only the Config Server dependency. The following image shows the Initializr set up for the
 configuration service:
 
-image::images/initializr-service.jpg[]
+image::images/initializr-service.png[]
 
 NOTE: The preceding image shows the Initializr with Maven chosen as the build tool. You
 can also use Gradle. It also shows values of `com.example` and
@@ -60,7 +60,7 @@ The second application (the configuration client) needs the Config Client, Sprin
 Actuator, and Spring Web dependencies. The following image  shows the Initializr set up
 for the configuration client:
 
-image::images/initializr-client.jpg[]
+image::images/initializr-client.png[]
 
 NOTE: The preceding image shows the Initializr with Maven chosen as the build tool. You
 can also use Gradle. It also shows values of `com.example` and
