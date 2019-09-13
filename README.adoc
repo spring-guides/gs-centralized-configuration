@@ -3,104 +3,149 @@
 :source-highlighter: prettify
 :project_id: gs-centralized-configuration
 
-This guide walks you through the process of standing up, and consuming configuration from, the http://cloud.spring.io/spring-cloud-config/spring-cloud-config.html[Spring Cloud Config Server]
+This guide walks you through the process of standing up and consuming configuration from the http://cloud.spring.io/spring-cloud-config/spring-cloud-config.html[Spring Cloud Config Server]
 
-== What you'll build
+== What You Will Build
 
-You'll setup a http://cloud.spring.io/spring-cloud-config/spring-cloud-config.html[Config Server] and then build a client that consumes the configuration on startup and then _refreshes_ the configuration without restarting the client.
+You will set up a
+http://cloud.spring.io/spring-cloud-config/spring-cloud-config.html[Config Server] and
+build a client that consumes the configuration on startup and then _refreshes_ the
+configuration without restarting the client.
 
-== What you'll need
+== What You need
 
 :java_version: 1.8
 include::https://raw.githubusercontent.com/spring-guides/getting-started-macros/master/prereq_editor_jdk_buildtools.adoc[]
 
 include::https://raw.githubusercontent.com/spring-guides/getting-started-macros/master/how_to_complete_this_guide.adoc[]
 
-[[reveal-gradle]]
-[.reveal-gradle]
-== Build with Gradle
+== Starting with Spring Initializr
 
-[[scratch]]
-[.use-gradle]
-== Build with Gradle
+For all Spring applications, you should start with the https://start.spring.io[Spring
+Initializr]. The Initializr offers a fast way to pull in all the dependencies you need for
+an application and does a lot of the set up for you.
 
-include::https://raw.githubusercontent.com/spring-guides/getting-started-macros/master/build_system_intro.adoc[]
+This guide needs two applications. The first application (the configuration service) needs
+only the Config Server dependency. The following image shows the Initializr set up for the
+configuration service:
 
-include::https://raw.githubusercontent.com/spring-guides/getting-started-macros/master/create_directory_structure_hello.adoc[]
+image::images/initializr-service.jpg[]
 
-include::https://raw.githubusercontent.com/spring-guides/getting-started-macros/master/create_both_builds.adoc[]
+NOTE: The preceding image shows the Initializr with Maven chosen as the build tool. You
+can also use Gradle. It also shows values of `com.example` and
+`centralized-configuration-service` as the Group and Artifact, respectively. You will use
+those values throughout the rest of this sample.
 
-`configuration-service/build.gradle`
-// AsciiDoc source formatting doesn't support groovy, so using java instead
-[source,java]
+The following listing shows the `pom.xml` file (for the configuration service) that was
+created when you choose Maven:
+
+====
+[src,xml]
 ----
-include::https://raw.githubusercontent.com/spring-guides/{project_id}/master/initial/configuration-service/build.gradle[]
+include::complete/configuration-service/pom.xml[]
 ----
+====
 
-`configuration-client/build.gradle`
-// AsciiDoc source formatting doesn't support groovy, so using java instead
-[source,java]
+The following listing shows the `build.gradle` file (for the configuration service) that
+was created when you choose Gradle:
+
+====
+[src,groovy]
 ----
-include::https://raw.githubusercontent.com/spring-guides/{project_id}/master/initial/configuration-client/build.gradle[]
+include::complete/configuration-service/build.gradle[]
 ----
+====
 
-include::https://raw.githubusercontent.com/spring-guides/getting-started-macros/master/spring-boot-gradle-plugin.adoc[]
+The second application (the configuration client) needs the Config Client, Spring Boot
+Actuator, and Spring Web dependencies. The following image  shows the Initializr set up
+for the configuration client:
 
-[[reveal-maven]]
-[.reveal-maven]
-== Build with Maven
+image::images/initializr-client.jpg[]
 
-[[use-maven]]
-[.use-maven]
-== Build with Maven
+NOTE: The preceding image shows the Initializr with Maven chosen as the build tool. You
+can also use Gradle. It also shows values of `com.example` and
+`centralized-configuration-client` as the Group and Artifact, respectively. You will use
+those values throughout the rest of this sample.
 
-include::https://raw.githubusercontent.com/spring-guides/getting-started-macros/master/build_system_intro_maven.adoc[]
+The following listing shows the `pom.xml` file (for the configuration client) that was
+created when you choose Maven:
 
-include::https://raw.githubusercontent.com/spring-guides/getting-started-macros/master/create_directory_structure_hello.adoc[]
-
-To get you started quickly, here are the complete configurations for the server and client applications:
-
-`configuration-service/pom.xml`
-[source,xml]
+====
+[src,xml]
 ----
-include::https://raw.githubusercontent.com/spring-guides/{project_id}/master/initial/configuration-service/pom.xml[]
+include::complete/configuration-client/pom.xml[]
 ----
+====
 
-`configuration-client/pom.xml`
-[source,xml]
+The following listing shows the `build.gradle` file (for the configuration client) that
+was created when you choose Gradle:
+
+====
+[src,groovy]
 ----
-include::https://raw.githubusercontent.com/spring-guides/{project_id}/master/initial/configuration-client/pom.xml[]
+include::complete/configuration-client/build.gradle[]
 ----
+====
 
-include::https://raw.githubusercontent.com/spring-guides/getting-started-macros/master/spring-boot-maven-plugin.adoc[]
-
-include::https://raw.githubusercontent.com/spring-guides/getting-started-macros/master/hide-show-sts.adoc[]
-
+NOTE: For convenience, we have provided build files (a `pom.xml` file and a `build.gradle`
+file) at the top of the project (one directory above the client and service directories)
+that you can use to build both projects at once. We also added the Maven and Gradle
+wrappers there.
 
 [[initial]]
 == Stand up a Config Server
-You'll first need a Config Service to act as a sort of intermediary between your Spring applications and a typically version-controlled repository of configuration files. You can use Spring Cloud's `@EnableConfigServer` to standup a config server that other applications can talk to. This is a regular Spring Boot application with one annotation added to _enable_ the config server.
 
-`configuration-service/src/main/java/hello/ConfigServiceApplication.java`
+You first need a Config Service to act as a sort of intermediary between your Spring
+applications and a (typically) version-controlled repository of configuration files. You
+can use Spring Cloud's `@EnableConfigServer` to standup a config server that can
+communicate with other applications. This is a regular Spring Boot application with one
+annotation added to _enable_ the config server. The following listing (from
+`configuration-service/src/main/java/com/example/configurationservice/ConfigServiceApplication.java`)
+shows such an application:
+
+====
 [source,java]
 ----
-include::complete/configuration-service/src/main/java/hello/ConfigServiceApplication.java[]
+include::complete/configuration-service/src/main/java/com/example/configurationservice/ConfigServiceApplication.java[]
 ----
+====
 
-The Config Server needs to know which repository to manage. There are several choices here, but we'll use a Git-based filesystem repository. You could as easily point the Config Server to a Github or GitLab repository, as well. On the file system, create a new directory and `git init` it. Then add a file called `a-bootiful-client.properties` to the Git repository. Make sure to also `git commit` it, as well. Later, you will connect to the Config Server with a Spring Boot application whose `spring.application.name` property identifies it as `a-bootiful-client` to the Config Server. This is how the Config Server will know which set of configuration to send to a specific client. It will _also_ send all the values from any file named `application.properties` or `application.yml` in the Git repository. Property keys in more specifically named files (like `a-bootiful-client.properties`) override those in `application.properties` or `application.yml`.
+The Config Server needs to know which repository to manage. There are several choices
+here, but start with a Git-based filesystem repository. You could as easily point the
+Config Server to a Github or GitLab repository. On the file system, create a new directory
+and run `git init` in it. Then add a file called `a-bootiful-client.properties` to the Git
+repository. Then run `git commit` in it. Later, you will connect to the Config Server with
+a Spring Boot application whose `spring.application.name` property identifies it as
+`a-bootiful-client` to the Config Server. This is how the Config Server knows which set of
+configuration to send to a specific client. It _also_ sends all the values from any file
+named `application.properties` or `application.yml` in the Git repository. Property keys
+in more specifically named files (such as `a-bootiful-client.properties`) override those
+in `application.properties` or `application.yml`.
 
-Add a simple property and value, `message = Hello world`, to the newly created `a-bootiful-client.properties` file and then `git commit` the change.
+Add a simple property and value (`message = Hello world`) to the newly created
+`a-bootiful-client.properties` file and then `git commit` the change.
 
-Specify the path to the Git repository by specifying the `spring.cloud.config.server.git.uri` property in `configuration-service/src/main/resources/application.properties`. Make sure to also specify a different `server.port` value to avoid port conflicts when you run both this server and another Spring Boot application on the same machine.
+Specify the path to the Git repository by specifying the
+`spring.cloud.config.server.git.uri` property in
+`configuration-service/src/main/resources/application.properties`. You must also specify a
+different `server.port` value to avoid port conflicts when you run both this server and
+another Spring Boot application on the same machine. The following listing (from
+`configuration-service/src/main/resources/application.properties`) shows such an
+`application.properties` file:
 
-`configuration-service/src/main/resources/application.properties`
+====
 [source,properties]
 ----
 include::complete/configuration-service/src/main/resources/application.properties[]
 ----
+====
 
-In this example we are using a file-based git repository at `${HOME}/Desktop/config`. You can create one easily by making a new directory and git committing properties and YAML files to it. E.g.
+This example uses a file-based git repository at `${HOME}/Desktop/config`. You can create
+one easily by making a new directory and running `git commit` on the properties and YAML
+files in it. The following set of commands does this work:
 
+====
+[source,bash]
 ----
 $ cd ~/Desktop/config
 $ find .
@@ -108,62 +153,109 @@ $ find .
 ...
 ./application.yml
 ----
+====
 
-Or you could use a remote git repository, e.g. on github, if you change the configuration file in the application to point to that instead.
+Or you could use a remote git repository (such as Github) if you change the configuration
+file in the application to point to that instead.
 
+== Reading Configuration from the Config Server by Using the Config Client
 
-== Reading Configuration from the Config Server using the Config Client
+Now that you have stood up a Config Server, you need to stand up a new Spring Boot
+application that uses the Config Server to load its own configuration and that _refreshes_
+its  configuration to reflect changes to the Config Server on-demand, without restarting
+the JVM. To do so, add the `org.springframework.cloud:spring-cloud-starter-config`
+dependency, to connect to the Config Server. Spring sees the configuration property files,
+as it would any property file loaded from `application.properties` or `application.yml` or
+any other `PropertySource`.
 
-Now that we've stood up a Config Server, let's stand up a new Spring Boot application that uses the Config Server to load its own configuration and that _refreshes_ its  configuration to reflect changes to the Config Server on-demand, without restarting the JVM. Add the `org.springframework.cloud:spring-cloud-starter-config` dependency in order to connect to the Config Server. Spring will see the configuration property files just like it would any property file loaded from `application.properties` or `application.yml` or any other `PropertySource`.
+The properties to configure the  Config Client must necessarily be read in _before_ the
+rest of the application's configuration is read from the Config Server, during the
+_bootstrap_ phase. Specify the client's `spring.application.name` as `a-bootiful-client`
+and the location of the Config Server (`spring.cloud.config.uri`) in
+`configuration-client/src/main/resources/bootstrap.properties`, where it will be loaded
+earlier than any other configuration. The following listing shows that file:
 
-The properties to configure the  Config Client must necessarily be read in _before_ the rest of the application's configuration is read from the Config Server, during the _bootstrap_ phase. Specify the client's `spring.application.name` as `a-bootiful-client` and the location of the Config Server `spring.cloud.config.uri` in `configuration-client/src/main/resources/bootstrap.properties`, where it will be loaded earlier than any other configuration.
-
-
+====
 `configuration-client/src/main/resources/bootstrap.properties`
 [source,java]
 ----
 include::complete/configuration-client/src/main/resources/bootstrap.properties[]
 ----
+====
 
-We also want to enable the `/refresh` endpoint so that we can demonstrate dynamic configuration changes:
+You also want to enable the `/refresh` endpoint, to demonstrate dynamic configuration
+changes. The following listing (from
+`configuration-client/src/main/resources/application.properties`) shows how to do so:
 
-`configuration-client/src/main/resources/application.properties`
+====
 [source,java]
 ----
 include::complete/configuration-client/src/main/resources/application.properties[]
 ----
+====
 
+The client can access any value in the Config Server by using the traditional mechanisms
+(such as `@ConfigurationProperties` or `@Value("${...}")` or through the `Environment`
+abstraction). Now you need to create a Spring MVC REST controller that returns the
+resolved `message` property's value. See the
+https://spring.io/guides/gs/rest-service/[Building a RESTful Web Service] guide to learn
+more about building REST services with Spring MVC and Spring Boot.
 
-The client may access any value in the Config Server using the traditional mechanisms (e.g. `@ConfigurationProperties`, `@Value("${...}")` or through the `Environment` abstraction). Create a Spring MVC REST controller that returns the resolved `message` property's value. Consult the https://spring.io/guides/gs/rest-service/[Building a RESTful Web Service] guide to learn more about building REST services with Spring MVC and Spring Boot.
+By default, the configuration values are read on the client's startup and not again. You
+can force a bean to _refresh_ its configuration (that is, to pull updated values from the
+Config Server) by annotating the `MessageRestController` with the Spring Cloud Config
+`@RefreshScope` and then triggering a _refresh_ event. The following listing (from
+`configuration-client/src/main/java/com/example/configurationclient/ConfigurationClientApplication.java`)
+shows how to do so:
 
-By default, the configuration values are read on the client's startup, and not again. You can force a bean to _refresh_ its configuration - to pull updated values from the Config Server - by annotating the `MessageRestController` with the Spring Cloud Config `@RefreshScope` and then by triggering a _refresh_ event.
-
-`configuration-client/src/main/java/hello/ConfigClientApplication.java`
+====
 [source,java]
 ----
-include::complete/configuration-client/src/main/java/hello/ConfigClientApplication.java[]
+include::complete/configuration-client/src/main/java/com/example/configurationclient/ConfigurationClientApplication.java[]
 ----
+====
 
-== Test the application
+== Test the Application
 
-Test the end-to-end result by starting the Config Service first and then, once loaded, starting the client. Visit the client app in the browser, `http://localhost:8080/message`. There, you should see the String `Hello world` reflected in the response.
+You can test the end-to-end result by starting the Config Service first and then, once it
+is running, starting the client. Visit the client app in the browser at
+`http://localhost:8080/message`. There, you should see `Hello world` in the response.
 
-Change the `message` key in the `a-bootiful-client.properties` file in the Git repository to something different (`Hello Spring!`, perhaps?). You can confirm that the Config Server sees the change by visiting `http://localhost:8888/a-bootiful-client/default`. You need to invoke the `refresh` Spring Boot Actuator endpoint in order to force the client to refresh itself and draw the new value in. Spring  Boot's Actuator  exposes operational endpoints, like health checks and environment information, about an application. In order to use it you must add `org.springframework.boot:spring-boot-starter-actuator` to the client app's CLASSPATH. You can invoke the  `refresh` Actuator endpoint by sending an empty HTTP `POST` to the client's `refresh` endpoint, `http://localhost:8080/actuator/refresh`, and then confirm it worked by reviewing the `http://localhost:8080/message` endpoint.
+Change the `message` key in the `a-bootiful-client.properties` file in the Git repository
+to something different (`Hello Spring!`, perhaps?). You can confirm that the Config Server
+sees the change by visiting `http://localhost:8888/a-bootiful-client/default`. You need to
+invoke the `refresh` Spring Boot Actuator endpoint in order to force the client to refresh
+itself and draw in the new value. Spring  Boot's Actuator  exposes operational endpoints
+(such as health checks and environment information) about an application. To use it, you
+must add `org.springframework.boot:spring-boot-starter-actuator` to the client
+application's classpath. You can invoke the  `refresh` Actuator endpoint by sending an
+empty HTTP `POST` to the client's `refresh` endpoint:
+`http://localhost:8080/actuator/refresh`. Then you can confirm it worked by visting the
+`http://localhost:8080/message` endpoint.
 
-```
+The following command invokes the Actuator's refresh command:
+
+====
+[source,bash]
+----
 $ curl localhost:8080/actuator/refresh -d {} -H "Content-Type: application/json"
-```
+----
+====
 
-NOTE: we set `management.endpoints.web.exposure.include=*` in the client app to make this easy to test (by default since Spring Boot 2.0 the Actuator endpoints are not exposed by default). By default you can still access them over JMX if you don't set the flag.
-
+NOTE: We set `management.endpoints.web.exposure.include=*` in the client application to
+make this is easy to test (since Spring Boot 2.0, the Actuator endpoints are not exposed
+by default). By default, you can still access them over JMX if you do not set the flag.
 
 == Summary
-Congratulations! You've just used Spring to centralize configuration for all your services by first standing up a  and to then dynamically update configuration.
+
+Congratulations! You have just used Spring to centralize configuration for all of your
+services by first standing up a service and then dynamically updating its configuration.
 
 == See Also
 
 The following guides may also be helpful:
 
+* https://spring.io/guides/gs/rest-service/[Building a RESTful Web Service]
 * https://spring.io/guides/gs/spring-boot/[Building an Application with Spring Boot]
 * https://spring.io/guides/gs/multi-module/[Creating a Multi Module Project]
 
