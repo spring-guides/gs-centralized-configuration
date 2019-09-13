@@ -14,41 +14,27 @@
  * limitations under the License.
  */
 
-package hello;
+package com.example.configurationservice;
 
-import static org.assertj.core.api.Assertions.*;
+import static org.assertj.core.api.Assertions.assertThat;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.boot.test.util.TestPropertyValues;
-import org.springframework.cloud.context.refresh.ContextRefresher;
-import org.springframework.core.env.ConfigurableEnvironment;
+import org.springframework.cloud.config.server.environment.EnvironmentController;
 import org.springframework.test.context.junit4.SpringRunner;
 
 @RunWith(SpringRunner.class)
-@SpringBootTest
-public class ConfigClientApplicationTest {
+@SpringBootTest(properties = { "spring.profiles.active=native" })
+public class ConfigurationServiceApplicationTest {
 
     @Autowired
-    private ConfigurableEnvironment environment;
-
-    @Autowired
-    private MessageRestController controller;
-
-    @Autowired
-    private ContextRefresher refresher;
+    private EnvironmentController controller;
 
     @Test
     public void contextLoads() {
-        assertThat(controller.getMessage()).isNotEqualTo("Hello test");
-        TestPropertyValues
-            .of("message:Hello test")
-            .applyTo(environment);
-        assertThat(controller.getMessage()).isNotEqualTo("Hello test");
-        refresher.refresh();
-        assertThat(controller.getMessage()).isEqualTo("Hello test");
+        assertThat(controller).isNotNull();
     }
 
 }
