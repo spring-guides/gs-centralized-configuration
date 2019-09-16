@@ -100,13 +100,13 @@ applications and a (typically) version-controlled repository of configuration fi
 can use Spring Cloud's `@EnableConfigServer` to standup a config server that can
 communicate with other applications. This is a regular Spring Boot application with one
 annotation added to _enable_ the config server. The following listing (from
-`configuration-service/src/main/java/com/example/configurationservice/ConfigServiceApplication.java`)
+`configuration-service/src/main/java/com/example/configurationservice/ConfigurationServiceApplication.java`)
 shows such an application:
 
 ====
 [source,java]
 ----
-include::complete/configuration-service/src/main/java/com/example/configurationservice/ConfigServiceApplication.java[]
+include::complete/configuration-service/src/main/java/com/example/configurationservice/ConfigurationServiceApplication.java[]
 ----
 ====
 
