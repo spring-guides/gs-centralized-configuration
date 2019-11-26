@@ -10,20 +10,20 @@ import org.springframework.web.bind.annotation.RestController;
 @SpringBootApplication
 public class ConfigurationClientApplication {
 
-    public static void main(String[] args) {
-        SpringApplication.run(ConfigurationClientApplication.class, args);
-    }
+	public static void main(String[] args) {
+		SpringApplication.run(ConfigurationClientApplication.class, args);
+	}
 }
 
 @RefreshScope
 @RestController
 class MessageRestController {
 
-    @Value("${message:Hello default}")
-    private String message;
+	@Value("${message:Hello default}")
+	private String message;
 
-    @RequestMapping("/message")
-    String getMessage() {
-        return this.message;
-    }
+	@RequestMapping("/message")
+	String getMessage() {
+		return this.message;
+	}
 }

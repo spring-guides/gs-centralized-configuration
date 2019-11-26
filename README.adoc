@@ -104,7 +104,7 @@ annotation added to _enable_ the config server. The following listing (from
 shows such an application:
 
 ====
-[source,java]
+[source,java,tabsize=2]
 ----
 include::complete/configuration-service/src/main/java/com/example/configurationservice/ConfigurationServiceApplication.java[]
 ----
@@ -177,7 +177,7 @@ earlier than any other configuration. The following listing shows that file:
 
 ====
 `configuration-client/src/main/resources/bootstrap.properties`
-[source,java]
+[source,java,tabsize=2]
 ----
 include::complete/configuration-client/src/main/resources/bootstrap.properties[]
 ----
@@ -188,7 +188,7 @@ changes. The following listing (from
 `configuration-client/src/main/resources/application.properties`) shows how to do so:
 
 ====
-[source,java]
+[source,java,tabsize=2]
 ----
 include::complete/configuration-client/src/main/resources/application.properties[]
 ----
@@ -209,7 +209,7 @@ Config Server) by annotating the `MessageRestController` with the Spring Cloud C
 shows how to do so:
 
 ====
-[source,java]
+[source,java,tabsize=2]
 ----
 include::complete/configuration-client/src/main/java/com/example/configurationclient/ConfigurationClientApplication.java[]
 ----

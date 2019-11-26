@@ -5,7 +5,7 @@
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
- *      http://www.apache.org/licenses/LICENSE-2.0
+ *	  http://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
@@ -31,24 +31,24 @@ import org.springframework.test.context.junit4.SpringRunner;
 @SpringBootTest
 public class ConfigurationClientApplicationTest {
 
-    @Autowired
-    private ConfigurableEnvironment environment;
+	@Autowired
+	private ConfigurableEnvironment environment;
 
-    @Autowired
-    private MessageRestController controller;
+	@Autowired
+	private MessageRestController controller;
 
-    @Autowired
-    private ContextRefresher refresher;
+	@Autowired
+	private ContextRefresher refresher;
 
-    @Test
-    public void contextLoads() {
-        assertThat(controller.getMessage()).isNotEqualTo("Hello test");
-        TestPropertyValues
-            .of("message:Hello test")
-            .applyTo(environment);
-        assertThat(controller.getMessage()).isNotEqualTo("Hello test");
-        refresher.refresh();
-        assertThat(controller.getMessage()).isEqualTo("Hello test");
-    }
+	@Test
+	public void contextLoads() {
+		assertThat(controller.getMessage()).isNotEqualTo("Hello test");
+		TestPropertyValues
+			.of("message:Hello test")
+			.applyTo(environment);
+		assertThat(controller.getMessage()).isNotEqualTo("Hello test");
+		refresher.refresh();
+		assertThat(controller.getMessage()).isEqualTo("Hello test");
+	}
 
 }
