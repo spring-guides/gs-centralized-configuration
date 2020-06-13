@@ -14,7 +14,7 @@ repositories {
 }
 
 ext {
-	set('springCloudVersion', "Hoxton.M3")
+	set('springCloudVersion', "Hoxton.SR5")
 }
 
 dependencies {

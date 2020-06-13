@@ -244,7 +244,7 @@ $ curl localhost:8080/actuator/refresh -d {} -H "Content-Type: application/json"
 ====
 
 NOTE: We set `management.endpoints.web.exposure.include=*` in the client application to
-make this is easy to test (since Spring Boot 2.0, the Actuator endpoints are not exposed
+make this is easy to test (since Spring Boot 2.0, the Actuator endpoints does not expose
 by default). By default, you can still access them over JMX if you do not set the flag.
 
 == Summary
