@@ -29,6 +29,8 @@ an application and does a lot of the set up for you.
 This guide needs two applications. The first application (the configuration service) needs
 only the Config Server dependency.
 
+You can get a Maven build file with the necessary dependencies for the configuration service
+directly from the https://start.spring.io/#!type=maven-project&language=java&platformVersion=2.4.2.RELEASE&packaging=jar&jvmVersion=11&groupId=com.example&artifactId=centralized-configuration-service&name=centralized-configuration-service&description=Demo%20project%20for%20Spring%20Boot&packageName=com.example.centralized-configuration-service&dependencies=cloud-config-server[Spring Initializr].
 The following listing shows the `pom.xml` file (for the configuration service) that was
 created when you choose Maven:
 
@@ -39,6 +41,8 @@ include::complete/configuration-service/pom.xml[]
 ----
 ====
 
+You can get a Gradle build file with the necessary dependencies for the configuration service
+directly from the https://start.spring.io/#!type=gradle-project&language=java&platformVersion=2.4.2.RELEASE&packaging=jar&jvmVersion=11&groupId=com.example&artifactId=centralized-configuration-service&name=centralized-configuration-service&description=Demo%20project%20for%20Spring%20Boot&packageName=com.example.centralized-configuration-service&dependencies=cloud-config-server[Spring Initializr].
 The following listing shows the `build.gradle` file (for the configuration service) that
 was created when you choose Gradle:
 
@@ -52,6 +56,8 @@ include::complete/configuration-service/build.gradle[]
 The second application (the configuration client) needs the Config Client, Spring Boot
 Actuator, and Spring Web dependencies.
 
+You can get a Maven build file with the necessary dependencies for the configuration client
+directly from the https://start.spring.io/#!type=maven-project&language=java&platformVersion=2.4.2.RELEASE&packaging=jar&jvmVersion=11&groupId=com.example&artifactId=centralized-configuration-client&name=centralized-configuration-client&description=Demo%20project%20for%20Spring%20Boot&packageName=com.example.centralized-configuration-client&dependencies=cloud-config-client,actuator,web[Spring Initializr].
 The following listing shows the `pom.xml` file (for the configuration client) that was
 created when you choose Maven:
 
@@ -62,6 +68,8 @@ include::complete/configuration-client/pom.xml[]
 ----
 ====
 
+You can get a Gradle build file with the necessary dependencies for the configuration client
+directly from the https://start.spring.io/#!type=gradle-project&language=java&platformVersion=2.4.2.RELEASE&packaging=jar&jvmVersion=11&groupId=com.example&artifactId=centralized-configuration-client&name=centralized-configuration-client&description=Demo%20project%20for%20Spring%20Boot&packageName=com.example.centralized-configuration-client&dependencies=cloud-config-client,actuator,web[Spring Initializr].
 The following listing shows the `build.gradle` file (for the configuration client) that
 was created when you choose Gradle:
 
