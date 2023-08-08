@@ -21,8 +21,8 @@ include::https://raw.githubusercontent.com/spring-guides/getting-started-macros/
 [[scratch]]
 == Starting with Spring Initializr
 
-:service-link: https://start.spring.io/#!type=gradle-project&language=java&platformVersion=3.0.2&packaging=jar&jvmVersion=17&groupId=com.example&artifactId=centralized-configuration-server&name=centralized-configuration-server&description=Demo%20project%20for%20Spring%20Boot&packageName=com.example.centralized-configuration-server&dependencies=cloud-config-server
-:client-link: https://start.spring.io/#!type=gradle-project&language=java&platformVersion=3.0.2&packaging=jar&jvmVersion=17&groupId=com.example&artifactId=centralized-configuration-client&name=centralized-configuration-client&description=Demo%20project%20for%20Spring%20Boot&packageName=com.example.centralized-configuration-client&dependencies=cloud-config-server,actuator,web
+:service-link: https://start.spring.io/#!type=gradle-project&language=java&packaging=jar&jvmVersion=17&groupId=com.example&artifactId=centralized-configuration-service&name=centralized-configuration-service&description=Demo%20project%20for%20Spring%20Boot&packageName=com.example.centralized-configuration-service&dependencies=cloud-config-server
+:client-link: https://start.spring.io/#!type=gradle-project&language=java&packaging=jar&jvmVersion=17&groupId=com.example&artifactId=centralized-configuration-client&name=centralized-configuration-client&description=Demo%20project%20for%20Spring%20Boot&packageName=com.example.centralized-configuration-client&dependencies=cloud-config-server,actuator,web
 
 You can use this {service-link}[pre-initialized project] (for the service application) or this {client-link}[pre-initialized project] (for the client application) and click Generate to download a ZIP file. This project is configured to fit the examples in this tutorial.
 
