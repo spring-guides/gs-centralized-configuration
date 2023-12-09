@@ -177,7 +177,7 @@ The following command invokes the Actuator's refresh command:
 ====
 [source,bash]
 ----
-$ curl localhost:8080/actuator/refresh -d {} -H "Content-Type: application/json"
+$ curl -X POST localhost:8080/actuator/refresh -d {} -H "Content-Type: application/json"
 ----
 ====
 
