@@ -1,0 +1,36 @@
+version: 2
+updates:
+
+  - package-ecosystem: "maven"
+    directories:
+      - "/initial/configuration-client"
+      - "/initial/configuration-service"
+      - "/complete/configuration-client"
+      - "/complete/configuration-service"
+    ignore:
+      - dependency-name: "*"
+        update-types: ["version-update:semver-patch"]
+    schedule:
+      interval: "monthly"
+    target-branch: "main"
+    groups:
+      guide-dependencies-maven:
+        patterns:
+          - "*"
+
+  - package-ecosystem: "gradle"
+    directories:
+      - "/initial/configuration-client"
+      - "/initial/configuration-service"
+      - "/complete/configuration-client"
+      - "/complete/configuration-service"
+    ignore:
+      - dependency-name: "*"
+        update-types: ["version-update:semver-patch"]
+    schedule:
+      interval: "monthly"
+    target-branch: "main"
+    groups:
+      guide-dependencies-gradle:
+        patterns:
+          - "*"
