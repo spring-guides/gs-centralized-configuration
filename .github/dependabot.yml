@@ -9,7 +9,9 @@ updates:
       - "/complete/configuration-service"
     ignore:
       - dependency-name: "*"
-        update-types: ["version-update:semver-patch"]
+        update-types:
+          - version-update:semver-major
+          - version-update:semver-minor
     schedule:
       interval: "monthly"
     target-branch: "main"
@@ -26,7 +28,9 @@ updates:
       - "/complete/configuration-service"
     ignore:
       - dependency-name: "*"
-        update-types: ["version-update:semver-patch"]
+        update-types:
+          - version-update:semver-major
+          - version-update:semver-minor
     schedule:
       interval: "monthly"
     target-branch: "main"
